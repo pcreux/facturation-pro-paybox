@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: facturation_pro_paybox_dev
+
+test: &test
+  adapter: postgresql
+  database: facturation_pro_paybox_test

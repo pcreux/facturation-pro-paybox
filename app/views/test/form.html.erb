@@ -1,0 +1,17 @@
+<form method="POST" action="<%= @paybox.gateway_url %>">
+
+  <%- def paybox_hid_fields(opts = {})
+      out = ""
+      formatted_options = Paybox::System::Base.hash_form_fields_from(opts)
+
+      formatted_options.each do |o, v|
+        out << hidden_field_tag(o, v)
+        out << "\n"
+      end
+
+      out.html_safe
+    end
+  %>
+  <%= paybox_hid_fields @paybox.all_attributes %>
+  <input type="Submit">Paye!</input>
+</form>

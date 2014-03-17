@@ -1,0 +1,26 @@
+.panel.panel-default
+  .panel-heading
+    %h1.panel-title Paiement des factures facturation.pro via paybox.
+  .panel-body
+    - flash.each do |type, message|
+      - css = type == :notice ? 'success' : 'warning'
+      %div{class: "alert alert-#{css}"}= message
+    = form_tag '/facture', method: :get, class: "form-horizontal" do |f|
+      .form-group
+        .col-xs-4.form-label
+          = label_tag :reference, "Référence", class: "control-label"
+        .col-xs-8
+          %input.form-control{type: :text, placeholder: "201402-123 par exemple", id: "reference", name: "reference", required: true, value: @reference}
+      .form-group
+        .col-xs-4.form-label
+          = label_tag :montant, "Montant TTC", class: "control-label"
+        .col-xs-8
+          .input-group
+            %input.form-control{type: :text, placeholder: "123.80 par exemple", id: "montant", name: "montant", required: true, value: @montant}
+            %span.input-group-addon
+              = "€"
+      .form-group
+        .pay
+          = submit_tag "Payer par carte bancaire", class: "btn btn-default"
+
+
