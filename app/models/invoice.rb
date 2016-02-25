@@ -1,8 +1,9 @@
 class Invoice < Facturation
   def self.find_by_reference(reference)
     raise "reference can't be nil!" if reference.blank?
-    invoice = all(params: {invoice_ref: reference}).first
-    invoice if invoice && invoice.invoice_ref == reference # double check...
+    # reference 2014-06-1 returns invoices 2014-06-1.*
+    all(params: {invoice_ref: reference}).
+      select { |i| i.invoice_ref == reference }.first
   end
 
   def email
