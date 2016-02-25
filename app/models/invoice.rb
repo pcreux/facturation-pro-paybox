@@ -2,7 +2,7 @@ class Invoice < Facturation
   def self.find_by_reference(reference)
     raise "reference can't be nil!" if reference.blank?
     # reference 2014-06-1 returns invoices 2014-06-1.*
-    all(params: {invoice_ref: reference}).
+    all(params: {invoice_ref: reference, sort: 'asc'}).
       select { |i| i.invoice_ref == reference }.first
   end
 
